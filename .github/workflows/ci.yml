@@ -39,7 +39,7 @@ jobs:
 
   dockerize:
     runs-on: ubuntu-latest
-    needs: testing
+    needs: build
     environment: DEV
     
     steps:
