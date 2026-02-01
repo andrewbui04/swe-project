@@ -55,7 +55,7 @@ jobs:
       - name: Build Docker image and Push to registry
         id: meta
         run: |
-          SERVICE_NAME = swe-project
+          SERVICE_NAME = 'swe-project'
           DATE_TIME = $(date -u +"%Y%m%d%H%M")
           BRANCH_NAME = ${GITHUB_REF_NAME}
           COMMIT_HASH = $(git rev-parse --short HEAD)
