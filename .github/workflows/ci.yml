@@ -65,4 +65,4 @@ jobs:
 
           docker build -t ${{secrets.DOCKERHUB_USERNAME }}/swe-project:${{ env.IMAGE_TAG }} .
           
-          docker push ${{ secrets.DOCKERHUB_USERNAME }}/swe-project:${{ env.IMAGE_TAG }}/swe-project:${{ env.IMAGE_TAG }}
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/swe-project:${{ env.IMAGE_TAG }}
