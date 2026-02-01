@@ -30,6 +30,11 @@ jobs:
   testing:
     runs-on: ubuntu-latest
 
+    steps:
+      - name: Start for testing
+        run: | 
+          echo 'Welcome to testing phase!!'
+
 
   dockerize:
     runs-on: ubuntu-latest
