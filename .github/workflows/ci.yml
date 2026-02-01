@@ -56,7 +56,7 @@ jobs:
         run: |
           uname -a
           git --version || echo "git not found"
-          
+          git rev-parse --short HEAD
 
       - name: Build Docker image and Push to registry
         id: meta
