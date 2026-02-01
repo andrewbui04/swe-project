@@ -52,10 +52,16 @@ jobs:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
 
+      - name: Show info
+        run: |
+          uname -a
+          git --version || echo "git not found"
+          
+
       - name: Build Docker image and Push to registry
         id: meta
         run: |
-          SERVICE_NAME='home-service'
+          SERVICE_NAME="home-service"
           DATE_TIME=$(date -u +"%Y%m%d%H%M")
           BRANCH_NAME=${GITHUB_REF_NAME}
           COMMIT_HASH=$(git rev-parse --short HEAD)
