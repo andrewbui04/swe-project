@@ -56,13 +56,13 @@ jobs:
         run: |
           SERVICE_NAME="home-service"
           DATE_TIME=$(date -u +"%Y%m%d%H%M")
-          BRANCH_NAME=${GITHUB_REF_NAME}
+          BRANCH_NAME=$(echo "${GITHUB_REF_NAME}" | tr '/' '-' | tr '[:upper:]' '[:lower:]')
           COMMIT_HASH=$(git rev-parse --short HEAD)
 
           IMAGE_TAG=${SERVICE_NAME}-${DATE_TIME}-${BRANCH_NAME}-${COMMIT_HASH}
 
           echo "IMAGE TAG=$IMAGE_TAG" >> $GITHUB_ENV
 
-          docker build -t ${{secrets.DOCKERHUB_USERNAME }}/swe-project:${{ env.IMAGE_TAG }} .
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/swe-project:${{ env.IMAGE_TAG }} .
           
           docker push ${{ secrets.DOCKERHUB_USERNAME }}/swe-project:${{ env.IMAGE_TAG }}
