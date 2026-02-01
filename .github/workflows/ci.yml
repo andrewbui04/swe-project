@@ -61,7 +61,7 @@ jobs:
 
           IMAGE_TAG="${SERVICE_NAME}-${DATE_TIME}-${BRANCH_NAME}-${COMMIT_HASH}"
 
-          echo "IMAGE TAG=$IMAGE_TAG" >> $GITHUB_ENV
+          echo "IMAGE_TAG=$IMAGE_TAG" >> $GITHUB_ENV
 
           docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/swe-project:${{ env.IMAGE_TAG }} .
           
