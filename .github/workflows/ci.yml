@@ -59,7 +59,7 @@ jobs:
           BRANCH_NAME=$(echo "${GITHUB_REF_NAME}" | tr '/' '-' | tr '[:upper:]' '[:lower:]')
           COMMIT_HASH=$(git rev-parse --short HEAD)
 
-          IMAGE_TAG="${SERVICE_NAME}-${DATE_TIME}-${BRANCH_NAME}-${COMMIT_HASH}""
+          IMAGE_TAG="${SERVICE_NAME}-${DATE_TIME}-${BRANCH_NAME}-${COMMIT_HASH}"
 
           echo "IMAGE TAG=$IMAGE_TAG" >> $GITHUB_ENV
 
