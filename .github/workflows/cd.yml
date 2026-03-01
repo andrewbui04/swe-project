@@ -1,0 +1,38 @@
+name: swe project - CD pipeline 
+
+on:
+    workflow_dispatch:
+        inputs:
+            environment:
+                description: "Choose an ENV option to run"
+                required: true
+                type: choice
+                options:
+                    - DEV
+                    - PROD
+jobs:
+    deploy:
+        runs-on: ubuntu-latest
+        environment: ${{ github.event.inputs.environment }}
+
+        steps:
+            - name: Start for deployment
+              run: | 
+                echo 'Welcome to deployment phase!!'
+        
+            - name: Update Launch Template with new image tag
+              run: |
+                aws ec2 create-launch-template-version \
+                    --launch-template-id lt-04fbc571697c066b4 \
+                    --source-version '$Latest' \
+                    --launch-template-data "{\"UserData\":\"$(base64 -w0 userdata.sh)\"}"
+        
+            - name: Start Rolling Instance Refresh
+              run: |
+                aws autoscaling start-instance-refresh \
+                    --auto-scaling-group-name swe-project-dev-asg \
+                    --preferences '{
+                    "MinHealthyPercentage": 50,
+                    "InstanceWarmup": 60,
+                    "CheckpointPercentages": [50, 100]
+                    }'

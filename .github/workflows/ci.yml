@@ -75,3 +75,5 @@ jobs:
           docker build -t ${DOCKERHUB_USERNAME}/swe-project:${IMAGE_TAG} .
           
           docker push ${DOCKERHUB_USERNAME}/swe-project:${IMAGE_TAG}
+
+  
